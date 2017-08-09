@@ -2,7 +2,7 @@
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 
-namespace EG.One.DotNetCoreTemplate.Infrastructure.Filters
+namespace EG.One.DotNetCoreTemplate.API.Infrastructure.Filters
 {
     public class CustomSwaggerHeadersFilter : IOperationFilter
     {

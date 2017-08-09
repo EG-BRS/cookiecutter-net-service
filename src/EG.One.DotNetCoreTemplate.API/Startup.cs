@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using EG.One.DotNetCoreTemplate.Core;
-using EG.One.DotNetCoreTemplate.Infrastructure;
-using EG.One.DotNetCoreTemplate.Infrastructure.Filters;
+using EG.One.DotNetCoreTemplate.API.Infrastructure;
+using EG.One.DotNetCoreTemplate.API.Infrastructure.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 
-namespace EG.One.DotNetCoreTemplate
+namespace EG.One.DotNetCoreTemplate.API
 {
     public class Startup
     {

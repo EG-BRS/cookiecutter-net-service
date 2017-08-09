@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace EG.One.DotNetCoreTemplate.Controllers
+namespace EG.One.DotNetCoreTemplate.API.Controllers
 {
     [Route("[controller]")]
     [Authorize]

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace EG.One.DotNetCoreTemplate.Infrastructure
+namespace EG.One.DotNetCoreTemplate.API.Infrastructure
 {
     /// <summary>
     /// Extends MvcOptions to make global route prefix possible

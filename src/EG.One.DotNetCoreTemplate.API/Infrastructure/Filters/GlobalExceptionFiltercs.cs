@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
-namespace EG.One.DotNetCoreTemplate.Infrastructure.Filters
+namespace EG.One.DotNetCoreTemplate.API.Infrastructure.Filters
 {
     public class GlobalExceptionFilter : IExceptionFilter
     {

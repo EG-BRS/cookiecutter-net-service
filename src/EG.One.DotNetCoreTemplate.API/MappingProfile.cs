@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace EG.One.DotNetCoreTemplate
+namespace EG.One.DotNetCoreTemplate.API
 {
     /// <summary>
     /// AutoMapper profile

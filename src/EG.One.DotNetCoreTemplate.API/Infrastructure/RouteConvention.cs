@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Routing;
 using System.Linq;
 
-namespace EG.One.DotNetCoreTemplate.Infrastructure
+namespace EG.One.DotNetCoreTemplate.API.Infrastructure
 {
     /// <summary>
     /// RouteConvetion extends IApplicationModelConvention

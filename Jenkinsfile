@@ -1,4 +1,4 @@
-def projectName = "demoProject";
+def projectName = "demoproject";
 def pathName = "EG.One.DotNetCoreTemplate";
 def majorVersion = 1;
 def minorVersion = 0;

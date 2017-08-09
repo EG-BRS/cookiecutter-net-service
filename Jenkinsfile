@@ -13,8 +13,8 @@ node {
         sh "dotnet publish -c Release"
     }
     stage('Unit tests') {
-        sh "dotnet restore test/${projectName}.UnitTest"
-        sh "dotnet test test/${projectName}.UnitTest/${projectName}.UnitTest.csproj"
+        sh "dotnet restore test/${pathName}.UnitTest"
+        sh "dotnet test test/${pathName}.UnitTest/${pathName}.UnitTest.csproj"
     }
     stage('Package') {
         if (env.BRANCH_NAME  == "develop") {

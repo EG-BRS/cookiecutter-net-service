@@ -18,13 +18,7 @@ node {
     }
 
     stage('Package') {
-        if (env.BRANCH_NAME  == "develop") {
-            docker.withRegistry("https://kalk1-on.azurecr.io", "KALK1_CONTAINER_REGISTRY") {
-                sh "docker build -t kalk1-on.azurecr.io/${build.name}:${version} ."
-                sh "docker push kalk1-on.azurecr.io/${build.name}:${version}"
-            }
-        }
-
+        
         if (env.BRANCH_NAME == "master") {
 
             stage('Tag it') {
@@ -37,8 +31,8 @@ node {
             }
 
             docker.withRegistry("https://kalk1-on.azurecr.io", "KALK1_CONTAINER_REGISTRY") {
-                sh "docker build -t kalk1-on.azurecr.io/${build.name}:prod.${version} ."
-                sh "docker push kalk1-on.azurecr.io/${build.name}:prod.${version}"
+                sh "docker build -t kalk1-on.azurecr.io/${build.name}:${version} ."
+                sh "docker push kalk1-on.azurecr.io/${build.name}:${version}"
             }
         }
     }

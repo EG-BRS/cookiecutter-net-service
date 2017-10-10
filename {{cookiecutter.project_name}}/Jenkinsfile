@@ -1,0 +1,45 @@
+def pathName = "EG.One.DotNetCoreTemplate";
+def build;
+def buildVersion = env.BUILD_NUMBER;
+def version;
+
+node { 
+    stage('Build') {
+        checkout scm
+        build = readYaml file: "build.yml";
+    	version = "${build.majorVersion}.${build.minorVersion}.$buildVersion"
+
+        sh "dotnet restore --configfile=Nuget.Config"
+        sh "dotnet publish -c Release"
+    }
+    stage('Unit tests') {
+        sh "dotnet restore test/${pathName}.UnitTest"
+        sh "dotnet test test/${pathName}.UnitTest/${pathName}.UnitTest.csproj"
+    }
+
+    stage('Package') {
+        if (env.BRANCH_NAME  == "develop") {
+            docker.withRegistry("https://kalk1-on.azurecr.io", "KALK1_CONTAINER_REGISTRY") {
+                sh "docker build -t kalk1-on.azurecr.io/${build.name}:${version} ."
+                sh "docker push kalk1-on.azurecr.io/${build.name}:${version}"
+            }
+        }
+
+        if (env.BRANCH_NAME == "master") {
+
+            stage('Tag it') {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'github_credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+                    sh("git config user.email ci@codezoo.dk")
+                    sh("git config user.name 'CI'")
+                    sh("git tag -a ${version} -m 'Jenkins tagged new build'")
+                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/EG-BRS/' + build.name + '.git --tags')
+                }
+            }
+
+            docker.withRegistry("https://kalk1-on.azurecr.io", "KALK1_CONTAINER_REGISTRY") {
+                sh "docker build -t kalk1-on.azurecr.io/${build.name}:prod.${version} ."
+                sh "docker push kalk1-on.azurecr.io/${build.name}:prod.${version}"
+            }
+        }
+    }
+}

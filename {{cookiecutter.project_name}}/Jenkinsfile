@@ -1,7 +1,7 @@
 def pathName = "EG.One.DotNetCoreTemplate";
 
 node { 
-    def buildDetails = checkoutWithDetails(buildNumber:env.BUILD_NUMBER)
+    def buildDetails = checkoutWithDetails(buildNumber:env.BUILD_NUMBER, branch: env.BRANCH_NAME)
     
     stage('Build') {
         sh "dotnet restore --configfile=Nuget.Config"
@@ -13,8 +13,6 @@ node {
         sh "dotnet test test/${pathName}.UnitTest/${pathName}.UnitTest.csproj"
     }
 
-    if (env.BRANCH_NAME == "master") {
-        buildDockerImage(buildDetails)
-    }
+    buildDockerImage(buildDetails)
     
 }
